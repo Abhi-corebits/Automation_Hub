@@ -1,5 +1,7 @@
 import { FeatherIcon } from "lucide-react";
 import { ItemHeaderDemo } from "../feature-cards/cards";
+import { Suspense } from "react";
+import LPSkeleton from "./skeleton";
 
 export default function Feature() {
     return (
@@ -8,7 +10,10 @@ export default function Feature() {
                     <FeatherIcon size={35} /> Weekly Top Performers 
                 <div className="border-2 border-gray-300 flex flex-1 rounded-2xl text-center items-center -translate-y-[-2px]"></div>
                 </h1>
-                <ItemHeaderDemo />
+                <Suspense fallback={<LPSkeleton/>}>
+                    <ItemHeaderDemo />
+                </Suspense>
+                
             </section>
     )
 }

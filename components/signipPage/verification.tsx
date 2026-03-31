@@ -1,6 +1,8 @@
 'use server'
 import { pool } from "@/db/connection";
 import bcrypt from "bcryptjs";
+import { config } from "dotenv";
+config()
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/
@@ -14,7 +16,7 @@ export async function Verify(email: string,password: string , name:string) {
         };
     }
     
-    //Checkking if user exists
+    //Checking if user exists
     const data = await pool.query(
                 `Select email from users
                 where email=$1`,[email]
@@ -36,8 +38,8 @@ export async function Verify(email: string,password: string , name:string) {
     //Storing the user
     const hashedPass = await bcrypt.hash(password , 8)
     await pool.query(
-        `insert into users (name ,email , hash_pass)
-        values ( $1 , $2 , $3)` , [name , email , hashedPass]
+        `insert into users (name ,email , hash_pass , role)
+        values ( $1 , $2 , $3 , $4)` , [name , email , hashedPass , process.env.ROLE]
     )
 
     return {

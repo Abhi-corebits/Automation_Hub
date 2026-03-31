@@ -7,6 +7,7 @@ import 'dotenv/config';
 export async function POST(req: Request) {
 
     const { email, pass } = await req.json()
+    const role = "user"
 
     if (!email.trim() || !pass.trim()) {
         return NextResponse.json({valid:false , msg:"Empty field were provided"})
@@ -28,7 +29,7 @@ export async function POST(req: Request) {
     }
 
     // JWT token
-    const token = jwt.sign({ email }, process.env.JWT_SECRET!, { expiresIn: "15m" })
+    const token = jwt.sign({ email , role }, process.env.JWT_SECRET!, { expiresIn: "15m" })
 
     // Create a response
     const response = NextResponse.json({ valid: true, msg: "Login successful" })
@@ -38,9 +39,9 @@ export async function POST(req: Request) {
         name: "iBuildThis",
         value: token,
         httpOnly: true,
-        sameSite: "strict",
+        sameSite: "lax",
         path: "/",
-        maxAge: 60 * 15, // 15 minutes
+        maxAge: 60 * 60, // 15 minutes
     })
 
     return response

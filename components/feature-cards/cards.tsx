@@ -13,9 +13,10 @@ import { Badge } from "../ui/badge"
 import { ArrowBigDownDashIcon, ArrowBigUpDashIcon, ArrowUp, ArrowUp01Icon, ArrowUpCircle, ArrowUpToLine, CarrotIcon, TrendingUpIcon } from "lucide-react"
 import Fadein from "../ui/fadein"
 
-const imgObj = await fetch('http://127.0.0.1:3000/api/test').then((res)=>res.json())
+
 
 export async function ItemHeaderDemo() {
+    const imgObj = await fetch('http://127.0.0.1:3000/api/test',{ next:{revalidate:0}}).then((res)=>res.json())
     return (
         <div className="flex mx-auto flex-col gap-6 pt-2 pb-2 ">
             <Fadein>

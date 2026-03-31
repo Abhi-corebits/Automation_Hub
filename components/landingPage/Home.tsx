@@ -41,7 +41,7 @@ function HomePage() {
     return (
         <main>
             <Header/>
-            <div className="flex flex-col text-center justify-center items-center smm:pl-10 sm:pr-10 px-6  w-full space-t-8  bg-[url('/landingpageBG.jpeg')] bg-cover">
+            <div className="flex flex-col text-center justify-center items-center sm:pl-10 sm:pr-10 px-6  w-full space-y-8  bg-[url('/landingpageBG.jpeg')] bg-cover">
                 <Badge asChild variant={"outline"} className="py-1 px-8 mt-5 bg-[#f7f7f7] font-sm text-lg">
                     <Link href="/"> 
                         <span className="relative flex size-2 mr-2">

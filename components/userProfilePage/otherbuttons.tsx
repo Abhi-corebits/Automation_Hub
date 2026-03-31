@@ -14,7 +14,6 @@ export default function Otherbutton() {
     return (
         <main className="bg-[#e9e9e9]">
             
-
             {/* Floating Action Cards Section */}
             <div className="relative max-w-[1200px] mx-auto px-6 py-10 ">
                 <div className="text-center mb-12">

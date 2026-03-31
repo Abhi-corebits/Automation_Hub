@@ -140,40 +140,40 @@ function ExplorePage() {
                             <div className="flex bg-gray-100 hover:bg-gray-200">
                                 {/* Image */}
                                 <div className="w-[38%]  flex items-center justify-center">
-                                    {/* <img src={project.screenshots_url[0]} className="m-2 ml-6" /> */}
-                                    <CarouselDemo arr={project.screenshots_url}/>
+                                    <img src={project.screenshots_url[0]} className="m-2 ml-6" />
+                                    {/* <CarouselDemo arr={project.screenshots_url}/> */}
                                 </div>
 
                                 {/* Content */}
-                                <div className="flex-1 p-6">
+                                <div className="flex-1 p-3">
                                     <div className="flex justify-between items-start mb-3">
-                                        <div>
-                                            <h3 className="font-semibold text-xl mb-1">{project.title}</h3>
-                                            <p className="text-gray-500 text-sm">by {project.name}</p>
+                                        <div className="pl-4">
+                                            <h3 className="font-bold text-4xl  pl-2 ">{project.title}</h3>
+                                            <p className="text-gray-500 text-sm pl-2">by {project.name}</p>
                                         </div>
-                                        {project.trending && (
+                                        {/* {project.trending && (
                                             <span className="px-2 py-1 bg-black text-white text-xs rounded-full flex items-center gap-1">
                                                 <TrendingUp className="size-3" /> Trending
                                             </span>
-                                        )}
+                                        )} */}
                                     </div>
 
-                                    <p className="text-gray-600 text-sm mb-4">
+                                    <p className="text-gray-600 text-sm pl-2 mt-10 mb-4">
                                         {project.soln}
                                     </p>
 
-                                    <div className="flex flex-wrap gap-2 mb-4">
-                                        {project.badges.map((tech:any) => (
+                                    <div className="flex gap-2 mb-4">
+                                        {/* {project.badges.map((tech:any) => ( */}
                                             <span
-                                                key={tech}
-                                                className="px-3 py-1 border border-gray-300 text-gray-700 text-xs rounded-md"
+                                                // key={tech}
+                                                className="mx-3 px-3 my-3  mt-10  border border-gray-300 text-white bg-red-600/80 text-sm rounded-md"
                                             >
-                                                {tech}
+                                                n8n
                                             </span>
-                                        ))}
+                                        {/* ))} */}
                                     </div>
 
-                                    <div className="flex items-center gap-4 text-sm text-gray-500">
+                                    <div className="flex items-center justify-end content-end gap-4 text-sm text-gray-500">
                                         {/* <span className="flex items-center gap-1">
                                             <Eye className="size-4" /> {project.views} views
                                         </span> */}

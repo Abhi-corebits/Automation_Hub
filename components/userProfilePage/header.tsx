@@ -8,10 +8,7 @@ export default function Header(){
                 <Image src='/globe.svg' alt="App Image" width={20} height={20} />
                 <p className="pl-1.5">iBuiltThis</p>
             </div>
-            <div className="flex gap-5 pr-4 pt-1 font-medium">
-                <Link href={"/signup"} className="hover:underline">Sign up</Link>
-                <Link href={"/login"} className="hover:underline">Login</Link>
-            </div>
+            
         </div>
     )
 }
