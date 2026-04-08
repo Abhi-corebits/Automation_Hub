@@ -55,14 +55,14 @@ export default function Profile() {
     if (loading) {
         // Loading skeleton
         return (
-            <div className="rounded-2xl p-6 sm:p-8 mb-6 bg-gray-900/50 backdrop-blur-sm border border-gray-700 shadow-lg animate-pulse">
+            <div className="rounded-2xl p-6 sm:p-8 mb-6 shadow-lg animate-pulse">
                 <div className="flex flex-col sm:flex-row items-start gap-5 sm:gap-6">
                     <div className="w-20 h-20 sm:w-24 sm:h-24 bg-gray-700/50 rounded-full flex-shrink-0"></div>
                     <div className="flex-1 w-full">
-                        <div className="h-8 bg-gray-700/50 rounded-lg w-3/4 mb-2"></div>
-                        <div className="h-4 bg-gray-700/50 rounded w-1/2 mb-3"></div>
-                        <div className="h-4 bg-gray-700/50 rounded w-full mb-2"></div>
-                        <div className="h-4 bg-gray-700/50 rounded w-5/6"></div>
+                        <div className="h-8 bg-gray-700/50 mb-2"></div>
+                        <div className="h-4 bg-gray-700/50  mb-3"></div>
+                        <div className="h-4 bg-gray-700/50 w-full mb-2"></div>
+                        <div className="h-4 bg-gray-700/50 "></div>
                     </div>
                 </div>
             </div>
@@ -70,13 +70,13 @@ export default function Profile() {
     }
 
     return (
-        <div className="rounded-2xl p-6 sm:p-8 mb-6 bg-gray-900/50 backdrop-blur-sm border border-gray-700 shadow-lg hover:border-gray-600 transition-colors duration-200">
+        <div className="rounded-2xl p-6 sm:p-8 hover:border-gray-600 transition-colors duration-200">
             <div className="flex flex-col sm:flex-row items-start gap-5 sm:gap-6">
                 
                 {/* User Info */}
                 <div className="flex-1 w-full min-w-0">
                     {/* Name */}
-                    <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-1 break-words text-white">
+                    <h1 className="text-2xl sm:text-4xl lg:text-6xl font-bold mb-1 break-words text-white">
                         {user.name}
                     </h1>
 
@@ -86,8 +86,8 @@ export default function Profile() {
                     </p>
 
                     {/* Bio */}
-                    <p className="text-sm sm:text-base text-gray-300 mb-4 break-words leading-relaxed">
-                        Bio - <br></br>{user.bio}
+                    <p className="text-sm sm:text-base lg:text-xl text-gray-300  break-words leading-relaxed">
+                       {user.bio}
                     </p>
 
                     {/* Social Links

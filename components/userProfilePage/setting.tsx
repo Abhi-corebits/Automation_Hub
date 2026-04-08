@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 export default function Setting() {
 
     const router = useRouter()
-    const [image, setImage] = useState<File | null>(null);
+    // const [image, setImage] = useState<File | null>(null);
     const [formData, setFormData] = useState({
         name: "",
         bio: ""
@@ -21,13 +21,13 @@ export default function Setting() {
         setFormData(prev => ({ ...prev, [name]: value }));
     };
 
-    const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const file = e.target.files?.[0];
-        if (file) {
-            setImage(file);
-            setPreview(URL.createObjectURL(file))
-        }
-    };
+    // const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    //     const file = e.target.files?.[0];
+    //     if (file) {
+    //         setImage(file);
+    //         setPreview(URL.createObjectURL(file))
+    //     }
+    // };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -99,7 +99,7 @@ export default function Setting() {
                 <form onSubmit={handleSubmit} className="space-y-8">
                     {/* Name Field */}
                     <div className="space-y-3">
-                        <label className="block text-white text-xl font-semibold">
+                        {/* <label className="block text-white text-xl font-semibold">
                             Change Profile Picture
                         </label>
 
@@ -115,7 +115,7 @@ export default function Setting() {
                                 alt="Preview"
                                 className="w-32 h-32 rounded-full object-cover border border-gray-600 mt-3"
                             />
-                        )}
+                        )} */}
 
                         <label htmlFor="name" className="block text-white text-xl font-semibold">
                             Change Your Name

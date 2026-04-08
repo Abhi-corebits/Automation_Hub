@@ -24,18 +24,16 @@ function UserProfile() {
       </div>
 
       {/* Main Container */}
-      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12 relative z-10">
+      <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Main Content - Full width on mobile, 10 cols on desktop */}
           <div className="flex flex-col col-span-1 lg:col-span-12">
-            <div className="flex w-full">
+            <div className="flex ">
             {/* Profile Header */}
             <Suspense fallback={<SkeletonProfile />}>
               <Profile />
             </Suspense>
-            <div className="text-2xl w- text-white font-bold">
-              Explore 
-            </div>
+            
             </div>
 
             {/* Tabs Section */}

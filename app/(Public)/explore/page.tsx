@@ -1,190 +1,173 @@
 'use client'
-import { useEffect , useState } from "react";
-import { Search, Eye, Heart, TrendingUp } from "lucide-react";
-import { CarouselDemo } from "@/components/explore/carousoul";
+import { useEffect, useState } from "react";
+import { Search, Eye, Heart, TrendingUp, Sparkles } from "lucide-react";
 
 function ExplorePage() {
     const [projects, setProjects] = useState([]);
     const [filter, setFilter] = useState("All");
-    // Sample projects data
+    const [searchQuery, setSearchQuery] = useState("");
+
     useEffect(() => {
         async function fetchProjects() {
-            const res = await fetch("http://127.0.0.1:3000/api/explore", {
-                method: "POST",
-                body: filter
-            });
+            try {
+                const res = await fetch("http://127.0.0.1:3000/api/explore", {
+                    method: "POST",
+                    body: filter
+                });
 
-            const data = await res.json();
-            setProjects(data);
+                const data = await res.json();
+                setProjects(data);
+            } catch (error) {
+                console.error("Error fetching projects:", error);
+            }
         }
 
         fetchProjects();
     }, [filter]);
 
-    // const projects = [
-    //     {
-    //         id: 1,
-    //         title: "E-Commerce Dashboard",
-    //         author: "Sarah Chen",
-    //         description: "A full-stack admin dashboard with analytics, inventory management, and order tracking.",
-    //         tech: ["React", "Node.js", "MongoDB"],
-    //         views: 1324,
-    //         likes: 145,
-    //         trending: true
-    //     },
-    //     {
-    //         id: 2,
-    //         title: "AI Chat Application",
-    //         author: "Mike Johnson",
-    //         description: "Real-time chat app with AI-powered responses and conversation analysis.",
-    //         tech: ["Next.js", "OpenAI", "WebSocket"],
-    //         views: 2567,
-    //         likes: 389,
-    //         trending: true
-    //     },
-    //     {
-    //         id: 3,
-    //         title: "Fitness Tracker",
-    //         author: "Emma Davis",
-    //         description: "Mobile-first fitness app with workout plans, progress tracking, and social features.",
-    //         tech: ["React Native", "Firebase", "Redux"],
-    //         views: 892,
-    //         likes: 132
-    //     },
-    //     {
-    //         id: 4,
-    //         title: "Portfolio Website Builder",
-    //         author: "Alex Kumar",
-    //         description: "Drag-and-drop portfolio builder with customizable templates and animations.",
-    //         tech: ["Vue.js", "Tailwind", "Supabase"],
-    //         views: 1567,
-    //         likes: 234
-    //     },
-    //     {
-    //         id: 5,
-    //         title: "Task Management App",
-    //         author: "Lisa Park",
-    //         description: "Collaborative task manager with real-time updates and team features.",
-    //         tech: ["React", "Express", "PostgreSQL"],
-    //         views: 743,
-    //         likes: 98
-    //     },
-    //     {
-    //         id: 6,
-    //         title: "Weather Dashboard",
-    //         author: "Tom Wilson",
-    //         description: "Beautiful weather app with forecasts, maps, and location-based alerts.",
-    //         tech: ["JavaScript", "API", "Chart.js"],
-    //         views: 456,
-    //         likes: 67
-    //     }
-    // ];
+    const handleFilterChange = (newFilter: string) => {
+        setFilter(newFilter);
+    };
 
-    async function HandelFilter(filterBy:string){
-        const resObj = await fetch("http://127.0.0.1:3000/api/explore" , {
-            method:"POST" , 
-            body: filterBy ,
-        }).then((res)=>res.json())
-    }
+    const filteredProjects = projects.filter((project: any) => {
+        if (!searchQuery) return true;
+        const query = searchQuery.toLowerCase();
+        return (
+            project.title?.toLowerCase().includes(query) ||
+            project.name?.toLowerCase().includes(query) ||
+            project.soln?.toLowerCase().includes(query)
+        );
+    });
 
     return (
-        <main className="px-10 py-8">
+        <main className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 px-4 sm:px-6 lg:px-10 py-8">
             <div className="max-w-7xl mx-auto">
-                {/* Header - from Design 2 */}
-                <div className="text-center mb-8">
-                    <h1 className="text-6xl font-bold mb-4">Explore Projects</h1>
-                    <p className="text-gray-600">Discover amazing projects from our community</p>
+                {/* Header */}
+                <div className="text-center mb-10">
+                    <div className="flex items-center justify-center gap-3 mb-4">
+                        <Sparkles className="size-10 text-blue-400" />
+                        <h1 className="text-5xl sm:text-6xl font-bold bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500 bg-clip-text text-transparent">
+                            Explore Projects
+                        </h1>
+                    </div>
+                    <p className="text-slate-400 text-lg">Discover amazing automations from our community</p>
                 </div>
 
-                {/* Search Bar - from Design 2 */}
+                {/* Search Bar */}
                 <div className="max-w-2xl mx-auto mb-8">
-                    <div className="relative">
-                        <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 size-5 text-gray-400" />
+                    <div className="relative group">
+                        <Search className="absolute left-5 top-1/2 transform -translate-y-1/2 size-5 text-slate-500 group-focus-within:text-blue-400 transition-colors" />
                         <input
                             type="text"
-                            placeholder="Search for projects, creators, or tech stacks..."
-                            className="w-full pl-12 pr-4 py-3 border border-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-gray-400"
+                            placeholder="Search for projects, creators, or solutions..."
+                            value={searchQuery}
+                            onChange={(e) => setSearchQuery(e.target.value)}
+                            className="w-full pl-14 pr-6 py-4 bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl text-slate-200 placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500/50 focus:border-blue-500/50 transition-all"
                         />
                     </div>
                 </div>
 
-                {/* Category Pills - from Design 2 */}
-                <div className="flex justify-center gap-2 mb-8 flex-wrap ">
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm cursor-pointer hover:bg-gray-200 focus:bg-black focus:text-white">
-                        All
-                    </button>
-                    <button onClick={() => setFilter("Web Apps")} className="px-4 py-2 bg-gray-100 text-gray-00 rounded-full text-sm cursor-pointer hover:bg-gray-00 focus:bg-black focus:text-white">
-                        Web Apps
-                    </button>
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm cursor-pointer hover:bg-gray-200 focus:bg-black focus:text-white">
-                        Mobile Apps
-                    </button>
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm cursor-pointer hover:bg-gray-200 focus:bg-black focus:text-white">
-                        AI/ML
-                    </button>
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm cursor-pointer hover:bg-gray-200 focus:bg-black focus:text-white">
-                        Games
-                    </button>
-                    <button className="px-4 py-2 bg-gray-100 text-gray-700 rounded-full text-sm cursor-pointer hover:bg-gray-200 focus:bg-black focus:text-white">
-                        Tools
-                    </button>
+                {/* Category Pills */}
+                <div className="flex justify-center gap-3 mb-10 flex-wrap">
+                    {["All", "Web Apps", "Mobile Apps", "AI/ML", "Games", "Tools"].map((category) => (
+                        <button
+                            key={category}
+                            onClick={() => handleFilterChange(category)}
+                            className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 ${filter === category
+                                    ? "bg-gradient-to-r from-blue-600 to-cyan-600 text-white shadow-lg shadow-blue-500/30"
+                                    : "bg-slate-800/50 text-slate-400 hover:bg-slate-700/50 hover:text-slate-200 border border-slate-700/50"
+                                }`}
+                        >
+                            {category}
+                        </button>
+                    ))}
                 </div>
 
-                {/* Projects List - from Design 3 */}
-                <div className="space-y-8">
-                    {projects.map((project:any) => (
-                        <div
-                            key={project.id}
-                            className="shadow- border border-gray-200 rounded-lg overflow-hidden hover:shadow-lg transition-shadow duration-200 cursor-pointer"
-                        >
-                            <div className="flex bg-gray-100 hover:bg-gray-200">
-                                {/* Image */}
-                                <div className="w-[38%]  flex items-center justify-center">
-                                    <img src={project.screenshots_url[0]} className="m-2 ml-6" />
-                                    {/* <CarouselDemo arr={project.screenshots_url}/> */}
-                                </div>
-
-                                {/* Content */}
-                                <div className="flex-1 p-3">
-                                    <div className="flex justify-between items-start mb-3">
-                                        <div className="pl-4">
-                                            <h3 className="font-bold text-4xl  pl-2 ">{project.title}</h3>
-                                            <p className="text-gray-500 text-sm pl-2">by {project.name}</p>
+                {/* Projects List */}
+                <div className="space-y-6">
+                    {filteredProjects.length === 0 ? (
+                        <div className="text-center py-20">
+                            <p className="text-slate-500 text-xl">No projects found</p>
+                        </div>
+                    ) : (
+                        filteredProjects.map((project: any) => (
+                            <div
+                                key={project.id}
+                                className="group bg-slate-900/50 backdrop-blur-xl border border-slate-800/50 rounded-2xl overflow-hidden hover:border-blue-500/50 hover:shadow-2xl hover:shadow-blue-500/20 transition-all duration-300"
+                            >
+                                <div className="flex flex-col lg:flex-row">
+                                    {/* Image */}
+                                    <div className="lg:w-[40%] bg-slate-800/50 flex items-center justify-center p-4 lg:p-6">
+                                        <div className="relative w-full aspect-video rounded-xl overflow-hidden">
+                                            <img
+                                                src={project.screenshots_url[0]}
+                                                alt={project.title}
+                                                className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                                            />
+                                            <div className="absolute inset-0 bg-gradient-to-t from-slate-900/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                                         </div>
-                                        {/* {project.trending && (
-                                            <span className="px-2 py-1 bg-black text-white text-xs rounded-full flex items-center gap-1">
-                                                <TrendingUp className="size-3" /> Trending
-                                            </span>
-                                        )} */}
                                     </div>
 
-                                    <p className="text-gray-600 text-sm pl-2 mt-10 mb-4">
-                                        {project.soln}
-                                    </p>
+                                    {/* Content */}
+                                    <div className="flex-1 p-6 lg:p-8 flex flex-col justify-between">
+                                        <div>
+                                            <div className="flex justify-between items-start mb-4">
+                                                <div>
+                                                    <h3 className="font-bold text-2xl sm:text-3xl lg:text-4xl text-slate-100 group-hover:text-blue-400 transition-colors duration-300 mb-2">
+                                                        {project.title}
+                                                    </h3>
+                                                    <p className="text-slate-500 text-sm sm:text-base flex items-center gap-2">
+                                                        <span className="w-2 h-2 bg-blue-500 rounded-full"></span>
+                                                        by {project.name}
+                                                    </p>
+                                                </div>
+                                                {project.trending && (
+                                                    <span className="hidden sm:flex px-3 py-1.5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-xs font-semibold rounded-full items-center gap-1.5 shadow-lg shadow-blue-500/30">
+                                                        <TrendingUp className="size-3" /> Trending
+                                                    </span>
+                                                )}
+                                            </div>
 
-                                    <div className="flex gap-2 mb-4">
-                                        {/* {project.badges.map((tech:any) => ( */}
-                                            <span
-                                                // key={tech}
-                                                className="mx-3 px-3 my-3  mt-10  border border-gray-300 text-white bg-red-600/80 text-sm rounded-md"
-                                            >
-                                                n8n
-                                            </span>
-                                        {/* ))} */}
-                                    </div>
+                                            <p className="text-slate-400 text-sm sm:text-base leading-relaxed mb-6">
+                                                {project.soln}
+                                            </p>
 
-                                    <div className="flex items-center justify-end content-end gap-4 text-sm text-gray-500">
-                                        {/* <span className="flex items-center gap-1">
-                                            <Eye className="size-4" /> {project.views} views
-                                        </span> */}
-                                        <button className="flex items-center gap-1 hover:text-red-500 transition-colors">
-                                            <Heart className="size-4" /> {project.votes}
-                                        </button>
+                                            {/* Badge */}
+                                            <div className="flex gap-2 mb-6">
+                                                <span className="px-4 py-2 bg-gradient-to-r from-blue-600 to-blue-500 text-white text-sm font-semibold rounded-lg shadow-lg shadow-blue-500/30">
+                                                    n8n
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        {/* Actions */}
+                                        <div className="flex items-center justify-between pt-4 border-t border-slate-800/50">
+                                            <div className="flex items-center gap-4">
+                                                {/* Views */}
+                                                {project.views && (
+                                                    <span className="flex items-center gap-2 text-sm text-slate-400">
+                                                        <Eye className="size-4" />
+                                                        <span className="hidden sm:inline">{project.views}</span>
+                                                    </span>
+                                                )}
+
+                                                {/* Likes */}
+                                                <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-slate-800/50 hover:bg-slate-700/50 border border-slate-700/50 hover:border-red-500/50 text-slate-400 hover:text-red-400 transition-all duration-300 group/like">
+                                                    <Heart className="size-4 group-hover/like:scale-110 transition-transform" />
+                                                    <span className="font-semibold">{project.votes}</span>
+                                                </button>
+                                            </div>
+
+                                            {/* View Project Button */}
+                                            <button className="px-6 py-2.5 bg-gradient-to-r from-blue-600 via-blue-500 to-cyan-500 hover:from-blue-500 hover:via-blue-400 hover:to-cyan-400 text-white text-sm font-semibold rounded-xl transition-all duration-300 shadow-lg shadow-blue-500/40 hover:shadow-blue-500/60 hover:scale-105">
+                                                View Project
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    ))}
+                        ))
+                    )}
                 </div>
             </div>
         </main>
