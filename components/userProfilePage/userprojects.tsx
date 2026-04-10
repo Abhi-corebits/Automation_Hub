@@ -17,7 +17,7 @@ export default function UserProjects() {
     useEffect(() => {
         async function hey() {
             try {
-                await fetch("http://127.0.0.1:3000/api/usertopprojects", { next: { revalidate: 120 } })
+                await fetch(`/api/usertopprojects`, { next: { revalidate: 120 } })
                     .then(res => res.json())
                     .then(data => setAutomations(data));
             } catch (error) {

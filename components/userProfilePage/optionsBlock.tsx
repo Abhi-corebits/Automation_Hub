@@ -20,7 +20,7 @@ export default function Options({id}:any) {
             }
             {
                 id == "likedautomations" && (
-                    <h1 className="text-2xl font-bold flex justify-center py-20 animate-pulse">Under Construction.....</h1>
+                    <h1 className="text-2xl text-white font-bold flex justify-center py-20 animate-pulse">Under Construction.....</h1>
                 )
             }
             {
