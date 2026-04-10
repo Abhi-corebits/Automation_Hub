@@ -15,6 +15,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "iBuiltThis",
   description: "Web projects sharing platform",
+  viewport: "width=device-width, initial-scale=1",
 };
 
 export default function RootLayout({
