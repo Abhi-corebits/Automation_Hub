@@ -194,11 +194,11 @@ export default function UserProjects() {
                                     </button>
 
                                     
-                                    <button className="cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2.5 rounded-xl text-white  hover:bg-gray-700/60  hover:border-blue-500/30 transition-all duration-200 backdrop-blur-sm">
+                                    {/* <button className="cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2.5 rounded-xl text-white  hover:bg-gray-700/60  hover:border-blue-500/30 transition-all duration-200 backdrop-blur-sm">
                                       <Edit className="size-4 sm:size-5" />
                                       <span className="hidden sm:inline text-sm sm:text-base">Edit</span>
                                       {/* <span className="sm:hidden text-sm">💬</span> */}
-                                    </button>
+                                    {/* </button>  */}
 
                                     <button onClick={() => { handelPostDelete(obj.id) }} className="cursor-pointer flex items-center justify-center gap-1.5 sm:gap-2 px-4 py-2.5 rounded-xl text-white hover:bg-red-600/80  hover:border-blue-500/30 transition-all duration-200 backdrop-blur-sm">
                                         <Disc className="size-4 sm:size-5" />
