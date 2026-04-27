@@ -12,9 +12,9 @@ A simplified way to find & share automation ideas. Unlike other webpages which p
 
 ## Usage
 
-1.Register Yourself
-2.Log in your account
-3.Feeel free to explore ;)
+1. Register Yourself
+2. Log in your account
+3. Feel free to explore ;)
 
 ## Deployment
 
