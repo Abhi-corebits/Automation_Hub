@@ -19,20 +19,58 @@ Unlike other webpages which provides automation codes for dedicated automation t
 - Real-time filtering by title and use-case.
 
 ### ⚡ UI/UX
-- User Friendly experience
-- Beautiful skeletons for blocking requests 
+- User-friendly and intuitive experience  
+- Beautiful loading skeletons for handling blocking requests
+  
+## 🛠️ Tech Stack
 
-## Tech Stack
+### Full Stack
+- **Next.js** - Full-stack React framework (frontend + backend APIs)  
+- **NeonDB** - Serverless PostgreSQL database  
+- **Simple JWT** - Authentication system    
 
-* Frontend/Backend: NEXT.JS
-* Database: NEONDB (SQL)
-* Other Tools: Vercel
+### UI & Styling
+- **React 18** - UI library (used within Next.js)  
+- **TailwindCSS** - Utility-first styling
 
-## Usage
+# 🚀 Getting Started & Quick Set-ups
 
-1. Register Yourself
-2. Log in your account
-3. Feel free to explore ;)
+### Project Structure 
+
+'''bash
+'''
+
+### ⚙️ Installation & Setup
+
+1. **Clone the repository**
+```bash
+git clone https://github.com/your-username/automation-hub.git
+cd automation-hub
+```
+
+2. **Install dependencies**
+```bash
+npm install
+```
+
+3. **Setup environment variables**
+
+Create a `.env` file in the root directory:
+```env
+DATABASE_URL=your-neondb-url
+JWT_SECRET=your-secret-key
+NEXT_PUBLIC_API_URL=http://localhost:3000
+```
+
+4. **Run the development server**
+```bash
+npm run dev
+```
+
+### 🌐 Access the Application
+
+- Next.js App: http://localhost:3000
+- Check out **sitemap.xml** for endpoints
 
 ## Deployment
 
