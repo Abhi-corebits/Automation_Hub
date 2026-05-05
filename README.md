@@ -59,7 +59,11 @@ Create a `.env` file in the root directory:
 ```env
 DATABASE_URL=your-neondb-url
 JWT_SECRET=your-secret-key
-NEXT_PUBLIC_API_URL=http://localhost:3000
+ROLE=normaluser
+CLOUD_NAME=your-cloudinary-name
+CLOUD_API_KEY=your-cloudinary-api-key
+CLOUD_SECRET_KEY=your-cloudniary-secret-key
+PUBLIC_URL=http://127.0.0.1:3000
 ```
 
 4. **Run the development server**
